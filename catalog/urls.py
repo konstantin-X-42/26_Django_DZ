@@ -1,12 +1,12 @@
 from django.urls import path
 from catalog.views import (
-    ProductListView,
-    CategoriesListView,
-    OrdersTemplateView,
-    ContactsTemplateView,
-    ProductDetailView,
-    ProductCreateView,
-    ProductUpdateView,      # -26 Импортируем контроллер обновления
+    ProductListView,        # -25- Импортируем контроллер главной страницы, вывод списка всех товаров из базы данных
+    CategoriesListView,     # -25- Импортируем контроллер отображения списка объектов
+    OrdersTemplateView,     # -25- Импортируем контроллер отобразить HTML-страницу заказов без сложной логики
+    ContactsTemplateView,   # -25- Импортируем контроллер отображения статической или полустатической страницы (контактов)
+    ProductDetailView,      # -25- Импортируем контроллер отображение детальной информации об одном конкретном объекте
+    ProductCreateView,      # -25- Импортируем контроллер создания новой записи в базе данных через HTML-форму
+    ProductUpdateView,      # -26- Импортируем контроллер обновления
     ProductDeleteView,      # -26- Импортируем контроллер удаления
     ProductManageListView,  # -26- Импортируем контроллер вывода всех товаров в панель управления
 )
@@ -15,23 +15,23 @@ from catalog.views import (
 app_name = 'catalog'
 
 urlpatterns = [
-    # маршрут URL, для домашней страницы 1
+    # -22- маршрут URL, для домашней страницы 1
     path('', ProductListView.as_view(), name='21-2_home1'),
 
-    # маршрут URL, для Категорий страница 2
+    # -22- маршрут URL, для Категорий страница 2
     path('categories/', CategoriesListView.as_view(), name='21-2_home2'),
 
-    # маршрут URL, для Заказов страница 3
+    # -22- маршрут URL, для Заказов страница 3
     path('orders/', OrdersTemplateView.as_view(), name='21-2_home3'),
 
-    # маршрут URL, для страницы 4 контактов с закрывающим /
+    # -22- маршрут URL, для страницы 4 контактов с закрывающим /
     path('contacts/', ContactsTemplateView.as_view(), name='21-2_home4'),
 
     # -24-Задание 1 Маршрут URL, отвечает за динамическое отображение страницы конкретного товара
     # (например, карточки товара с его подробным описанием, ценой и картинкой).
     path('products/<int:pk>/', ProductDetailView.as_view(), name='product_detail'),
 
-    # Маршрут URL, для создания товара
+    # -24-Задание 1 Маршрут URL, для создания товара
     path('products/create/', ProductCreateView.as_view(), name='create_product'),
 
     # -26- Маршрут URL, для редактирования товара
@@ -44,40 +44,3 @@ urlpatterns = [
     path('products/manage/', ProductManageListView.as_view(), name='manage_products'),
 
 ]
-
-
-#  -----------25-------------
-
-
-# from django.urls import path
-# from catalog.views import (
-#     ProductListView,
-#     CategoriesListView,
-#     OrdersTemplateView,
-#     ContactsTemplateView,
-#     ProductDetailView,
-#     ProductCreateView
-# )
-#
-# # исключаем одноименные конфликты
-# app_name = 'catalog'
-#
-# urlpatterns = [
-#     # маршрут для домашней страницы 1
-#     path('', ProductListView.as_view(), name='21-2_home1'),
-#
-#     # маршрут для Категорий страница 2
-#     path('categories/', CategoriesListView.as_view(), name='21-2_home2'),
-#
-#     # маршрут для Заказов страница 3
-#     path('orders/', OrdersTemplateView.as_view(), name='21-2_home3'),
-#
-#     # маршрут для страницы 4 контактов с закрывающим /
-#     path('contacts/', ContactsTemplateView.as_view(), name='21-2_home4'),
-#
-#     # -24-Задание 1
-#     path('products/<int:pk>/', ProductDetailView.as_view(), name='product_detail'),
-#
-#     # Маршрут для создания товара
-#     path('products/create/', ProductCreateView.as_view(), name='create_product'),
-# ]

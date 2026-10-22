@@ -11,14 +11,15 @@ FORBIDDEN_WORDS = [
 
 
 class ProductForm(forms.ModelForm):
+    """ -24- Класс Form отвечает за генерацию HTML-полей на странице, сбор данных от пользователя и их базовое оформление."""
     class Meta:
         model = Product
-        # Поля модели для заполнения пользователем
+        # -24- Поля модели для заполнения пользователем
         fields = ['name', 'description', 'image', 'category', 'price']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Сохраняем твою красивую стилизацию для всех полей
+        # -24- Сохраняем красивую стилизацию для всех полей
         for field_name, field in self.fields.items():
             field.widget.attrs.update({
                 'style': 'width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #dee2e6; border-radius: 6px; box-sizing: border-box; font-size: 1rem;'
@@ -36,7 +37,7 @@ class ProductForm(forms.ModelForm):
     # -26-Задание 1: Валидация описания (в любом регистре)
     def clean_description(self):
         description = self.cleaned_data.get('description', '')
-        if description:  # Проверяем, так как поле может быть пустым (blank=True)
+        if description:  # -26- Проверяем, так как поле может быть пустым (blank=True)
             description_lower = description.lower()
             for word in FORBIDDEN_WORDS:
                 if word in description_lower:
@@ -54,35 +55,14 @@ class ProductForm(forms.ModelForm):
     def clean_image(self):
         image = self.cleaned_data.get('image')
         if image:
-            # Проверка размера (5 МБ = 5 * 1024 * 1024 байт)
+            # -26- Проверка размера (5 МБ = 5 * 1024 * 1024 байт)
             max_size = 5 * 1024 * 1024
             if image.size > max_size:
                 raise ValidationError("Размер файла не должен превышать 5 МБ.")
 
-            # Проверка расширения файла
+            # -26- Проверка расширения файла
             ext = os.path.splitext(image.name)[1].lower()
             valid_extensions = ['.jpg', '.jpeg', '.png']
             if ext not in valid_extensions:
                 raise ValidationError("Допускаются только файлы форматов JPEG или PNG.")
         return image
-
-
-# -------25--------
-
-
-# from django import forms
-# from catalog.models import Product
-#
-# class ProductForm(forms.ModelForm):
-#     class Meta:
-#         model = Product
-#         # Поля вашей модели для заполнения пользователем
-#         fields = ['name', 'description', 'image', 'category', 'price']
-#
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         # Добавляем стили к полям, чтобы форма выглядела красиво
-#         for field_name, field in self.fields.items():
-#             field.widget.attrs.update({
-#                 'style': 'width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #dee2e6; border-radius: 6px; box-sizing: border-box; font-size: 1rem;'
-#             })
