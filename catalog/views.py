@@ -97,6 +97,13 @@ class ProductDeleteView(DeleteView):
     success_url = reverse_lazy('catalog:21-2_home1')  # -26- Перенаправление на главную после удаления
 
 
+class ProductManageListView(ListView):
+    """-26- Контроллер страницы управления товарами (изменение/удаление)"""
+    model = Product
+    template_name = 'catalog/product_manage.html'
+    context_object_name = 'products'
+
+
 #------25----------------------------------
 
 
