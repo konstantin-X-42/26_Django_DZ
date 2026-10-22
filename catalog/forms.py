@@ -60,7 +60,7 @@ class ProductForm(forms.ModelForm):
                 raise ValidationError("Размер файла не должен превышать 5 МБ.")
 
             # Проверка расширения файла
-            ext = os.path.splitext(image.name).lower()
+            ext = os.path.splitext(image.name)[1].lower()
             valid_extensions = ['.jpg', '.jpeg', '.png']
             if ext not in valid_extensions:
                 raise ValidationError("Допускаются только файлы форматов JPEG или PNG.")

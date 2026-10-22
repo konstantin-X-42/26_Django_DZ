@@ -25,6 +25,10 @@
         <li>
             <a href="{% url 'catalog:create_product' %}" class="{% if request.resolver_match.url_name == 'create_product' %}active-custom{% else %}nav-link-custom{% endif %}">Добавить товар</a>
         </li>
+        <!-- -26- Управление каталогом (Редактировать) -->
+        <li>
+            <a href="{% url 'catalog:manage_products' %}" class="{% if request.resolver_match.url_name == 'manage_products' %}active-custom{% else %}nav-link-custom{% endif %}">Редактировать</a>
+        </li>
     </ul>
 
     <hr style="margin-top: auto;">
