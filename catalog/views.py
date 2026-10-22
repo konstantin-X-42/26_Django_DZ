@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, TemplateView, DetailView, CreateView, UpdateView, DeleteView
-from catalog.models import Product, ContactInfo
+from catalog.models import Product, ContactInfo, Category
 from catalog.forms import ProductForm
 
 
@@ -25,9 +25,9 @@ class ProductListView(ListView):
 
 class CategoriesListView(ListView):
     """-25- Контроллер для страницы категорий"""
-    model = Product
+    model = Category # -26- Исправил модель
     template_name = 'catalog/21-2_home2.html'
-    context_object_name = 'products'
+    context_object_name = 'categories' # -26- Исправил имя контекста
 
 
 class OrdersTemplateView(TemplateView):
