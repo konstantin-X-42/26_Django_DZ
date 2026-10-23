@@ -17,13 +17,17 @@
         <li>
             <a href="{% url 'catalog:21-2_home3' %}" class="{% if request.resolver_match.url_name == '21-2_home3' %}active-custom{% else %}nav-link-custom{% endif %}">Заказы</a>
         </li>
-        <!-- Контакты -->
-        <li>
-            <a href="{% url 'catalog:21-2_home4' %}" class="{% if request.resolver_match.url_name == '21-2_home4' %}active-custom{% else %}nav-link-custom{% endif %}">Контакты</a>
-        </li>
         <!-- Добавить товар -->
         <li>
             <a href="{% url 'catalog:create_product' %}" class="{% if request.resolver_match.url_name == 'create_product' %}active-custom{% else %}nav-link-custom{% endif %}">Добавить товар</a>
+        </li>
+        <!-- -26- Управление каталогом (Редактировать) -->
+        <li>
+            <a href="{% url 'catalog:manage_products' %}" class="{% if request.resolver_match.url_name == 'manage_products' %}active-custom{% else %}nav-link-custom{% endif %}">Редактировать</a>
+        </li>
+        <!-- Контакты (Опустили в самый низ списка) -->
+        <li>
+            <a href="{% url 'catalog:21-2_home4' %}" class="{% if request.resolver_match.url_name == '21-2_home4' %}active-custom{% else %}nav-link-custom{% endif %}">Контакты</a>
         </li>
     </ul>
 
